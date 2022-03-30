@@ -1,0 +1,85 @@
+
+<!doctype html>
+<html lang="en" style="font-size:16px">
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <meta name="referrer" content="no-referrer" />    
+    <title>微信推送</title>
+    <link rel="stylesheet" href="/css/tuisong.css">
+<script>
+    function click1(){
+            var data = location.hash; //location.hash获取的是#号开始的所有字符串,包括#号，hash 属性是一个可读可写的字符串，
+　　　　　　//该字符串是 URL 的锚部分（从 # 号开始的部分）。
+            
+        //如果传过来的是中文不经过编码的话，这里就会出现乱码。如何解决？如下：
+            data = decodeURI(data);
+            
+            console.log(data)
+            if(data.indexOf("&")==true){
+            var str_data = data.split("&");
+            }
+            else
+            {var str_data = data.split("%40");
+                
+            }
+            if(data.indexOf("%5Cu0026")==true){alert("尼玛")}
+            console.log(str_data.length)
+            var nickname;
+            var time ;
+            var neirong
+            nickname = str_data[0].split("=")[1];
+            time = str_data[1].split("=")[1];
+            neirong = str_data[2].slice(8);
+                        if(str_data.length>3){
+                console.log(str_data[3])
+                for(var i=3;i<str_data.length;i++){
+                    console.log(i)
+                    neirong=neirong+"@"+str_data[i]
+                }
+            }
+            neirong =neirong.replace("%23","#")
+            neirong =neirong.replace(/\\u003c/g,"<")
+            neirong =neirong.replace(/\\u003e/g,">")
+            console.log(neirong)
+
+
+           var tou = document.getElementById("tou");
+           var h55 =document.createElement("h4");
+           h55.innerHTML=nickname;
+           tou.appendChild(h55);
+           var shijian = document.getElementById("shijian");
+           var sp =document.createElement("span");
+           sp.setAttribute("class", "text-muted text-nowrap"); 
+           sp.innerHTML=time;
+           shijian.appendChild(sp);
+           var benti = document.getElementById("benti");
+           var di =document.createElement("div");
+           di.setAttribute("class", "container-fluid px-0 list-unstyled");
+           di.style.cssText="white-space: pre-line;";
+           di.innerHTML=neirong;
+           benti.appendChild(di);
+    }
+    
+</script>
+</head>
+<body onload="click1()">
+<div class="container d-flex flex-column" style="min-height:100vh">
+    <div class="jumbotron px-0 flex-grow-1" >
+      <div id="tou"></div>
+        <p class="mb-0 d-flex flex-wrap align-items-center">
+            <div id="shijian"></div>
+
+        </p>
+        <hr class="my-3" />
+        <div id="benti"></div>
+           
+            
+</div>
+
+
+
+</div>
+</body>
+</html>

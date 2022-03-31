@@ -12,7 +12,7 @@
     function click1(){
             var data = location.hash; //location.hash获取的是#号开始的所有字符串,包括#号，hash 属性是一个可读可写的字符串，
 　　　　　　//该字符串是 URL 的锚部分（从 # 号开始的部分）。
-            
+            console.log(data);
         //如果传过来的是中文不经过编码的话，这里就会出现乱码。如何解决？如下：
             data = decodeURI(data);
             if(data.indexOf("@")==true){

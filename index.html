@@ -15,7 +15,9 @@
             
         //如果传过来的是中文不经过编码的话，这里就会出现乱码。如何解决？如下：
             data = decodeURI(data);
-            
+            if(data.indexOf("@")==true){
+            var str_data = data.split("@");
+            }
             console.log(data)
             if(data.indexOf("&")==true){
             var str_data = data.split("&");

@@ -16,18 +16,25 @@
         //如果传过来的是中文不经过编码的话，这里就会出现乱码。如何解决？如下：
             data = decodeURI(data);
 
-            console.log(data)
-            if(data.indexOf("&")==true){
+            
+            
+            
+            if(data.indexOf("&")!=-1){
             var str_data = data.split("&");
+            console.log(data.indexOf("&"))
             }
             else
-            {var str_data = data.split("%40");
-                
+            {//var str_data = data.split("%40");
+             if(data.indexOf("%40")!=-1){
+                var str_data = data.split("%40"); 
+                console.log(data.indexOf("%40"))
+             }
+             else
+             {
+               var str_data = data.split("@");
+               console.log(data.indexOf("@"))
+             }
             }
-            if(data.indexOf("@")!=0){
-            var str_data = data.split("@");
-            console.log(str_data)
-            } 
             if(data.indexOf("%5Cu0026")==true){alert("尼玛")}
             console.log(str_data.length)
             var nickname;
